@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import Reveal from "../../../components/Reveal";
@@ -10,7 +10,15 @@ import type { Project } from "../../../lib/data";
 
 const label = "text-sm font-bold uppercase tracking-[0.2em] text-mint";
 
-export default function CaseStudy() {
+function Loading() {
+  return (
+    <div className="flex min-h-[70vh] items-center justify-center" role="status" aria-label="Loading">
+      <span className="spinner" />
+    </div>
+  );
+}
+
+function CaseStudyContent() {
   const { slug } = useParams<{ slug: string }>();
   const [p, setP] = useState<Project | null | undefined>(undefined);
   const [all, setAll] = useState<Project[]>([]);
@@ -32,11 +40,7 @@ export default function CaseStudy() {
   }, [p]);
 
   if (p === undefined) {
-    return (
-      <div className="flex min-h-[70vh] items-center justify-center" role="status" aria-label="Loading">
-        <span className="spinner" />
-      </div>
-    );
+    return <Loading />;
   }
 
   if (p === null) {
@@ -184,5 +188,13 @@ export default function CaseStudy() {
         {!next && <div className="h-20" />}
       </div>
     </main>
+  );
+}
+
+export default function CaseStudy() {
+  return (
+    <Suspense fallback={<Loading />}>
+      <CaseStudyContent />
+    </Suspense>
   );
 }
