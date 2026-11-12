@@ -37,7 +37,7 @@ export const profile = {
   ],
 };
 
-export const rotatingWords = ["online stores", "management systems", "marketplaces", "business dashboards"];
+export const rotatingWords = ["online stores", "web apps", "marketplaces", "dashboards", "systems"];
 
 export const facts = [
   { label: "Based in", value: "Pakistan" },

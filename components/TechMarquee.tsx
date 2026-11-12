@@ -7,8 +7,11 @@ export default function TechMarquee() {
   return (
     <section
       aria-label="Technologies"
-      className="marquee border-y border-line bg-surface/50 py-5"
-      style={{ maskImage: "linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent)" }}
+      className="marquee overflow-hidden border-y border-line bg-surface/50 py-5"
+      style={{
+        maskImage: "linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent)",
+        WebkitMaskImage: "linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent)",
+      }}
     >
       <div className="marquee-track flex w-max whitespace-nowrap">
         {row.map((t, i) => (

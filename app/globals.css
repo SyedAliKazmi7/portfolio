@@ -134,3 +134,60 @@ body {
   background-size: 200% 100%;
   animation: kg-shimmer 1.4s ease-in-out infinite;
 }
+/* ---------- Motion extras ---------- */
+@keyframes ring-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes orbit {
+  to { transform: rotate(360deg); }
+}
+@keyframes orbit-rev {
+  to { transform: rotate(-360deg); }
+}
+.ring-spin { animation: ring-spin 7s linear infinite; }
+.orbit { animation: orbit 30s linear infinite; }
+.orbit-rev { animation: orbit-rev 30s linear infinite; }
+
+.spot { position: relative; }
+.spot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(420px circle at var(--sx, 50%) var(--sy, 50%), rgba(62, 224, 176, 0.14), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.spot:hover::before { opacity: 1; }
+
+.link-u { position: relative; }
+.link-u::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--c-mint), var(--c-amber));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+.link-u:hover::after { transform: scaleX(1); }
+/* Outlined giant text */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(62, 224, 176, 0.55);
+}
+@media (max-width: 640px) {
+  .text-outline {
+    -webkit-text-stroke-width: 1.5px;
+  }
+}
+/* Safety net: the page never scrolls sideways */
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
