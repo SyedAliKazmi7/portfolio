@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Reveal from "./Reveal";
 import { profile } from "../lib/data";
 
@@ -12,6 +12,19 @@ export default function Contact() {
   const [msg, setMsg] = useState("");
   const [error, setError] = useState("");
   const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    function onPick(e: Event) {
+      const pkg = (e as CustomEvent<string>).detail;
+      const text =
+        pkg === "custom quote"
+          ? "Hi, I would like a custom quote for: "
+          : `Hi, I am interested in the ${pkg} package. `;
+      setMsg((m) => (m.trim() ? m : text));
+    }
+    window.addEventListener("select-package", onPick);
+    return () => window.removeEventListener("select-package", onPick);
+  }, []);
 
   function send(e: React.FormEvent) {
     e.preventDefault();
@@ -73,11 +86,7 @@ export default function Contact() {
             ))}
           </ul>
 
-          <button
-            type="button"
-            onClick={copyEmail}
-            className="mt-6 text-sm text-muted transition hover:text-ink"
-          >
+          <button type="button" onClick={copyEmail} className="mt-6 text-sm text-muted transition hover:text-ink">
             {profile.email} · <span className="font-bold text-mint">{copied ? "Copied!" : "Copy email"}</span>
           </button>
         </Reveal>
@@ -99,7 +108,7 @@ export default function Contact() {
               className={input}
               value={msg}
               onChange={(e) => setMsg(e.target.value)}
-              placeholder="For example: an online store for my shop, with stock and sales management."
+              placeholder="For example: a website for my shop with online booking."
             />
 
             {error && <p className="mt-4 text-sm font-semibold text-red-400">{error}</p>}

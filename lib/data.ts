@@ -211,3 +211,69 @@ export const projects: Project[] = [
     gallery: ["/projects/refreshment-2.png", "/projects/refreshment-3.png"],
   },
 ];
+export type Plan = {
+  name: string;
+  tagline: string;
+  price: number;
+  from: boolean; // true shows "Starting at"
+  popular?: boolean;
+  features: string[];
+  cta: string;
+};
+
+// ---------- EDIT THIS: pricing ----------
+export const pricing = {
+  intro: "One-time project prices in PKR. Pick a package, or tell me what you need and I will quote it.",
+  note: "Domain and hosting are paid directly to the provider. Prices are a starting point, and the final quote depends on your needs.",
+  plans: [
+    {
+      name: "Starter",
+      tagline: "A clean, fast website to get your business online.",
+      price: 30000,
+      from: true,
+      features: [
+        "Up to 5 pages (Home, About, Services, Gallery, Contact)",
+        "Mobile-friendly responsive design",
+        "Contact form and WhatsApp button",
+        "Google Maps and basic SEO",
+        "Live on your own domain",
+      ],
+      cta: "Choose Starter",
+    },
+    {
+      name: "Business",
+      tagline: "A custom-designed site that you can manage yourself.",
+      price: 70000,
+      from: true,
+      popular: true,
+      features: [
+        "Everything in Starter",
+        "Up to 10 pages with custom, animated design",
+        "Admin panel to update your content, products or services",
+        "Secure login for you and your staff",
+        "Speed and SEO optimisation",
+        "Training on how to use the admin panel",
+      ],
+      cta: "Choose Business",
+    },
+    {
+      name: "Complete",
+      tagline: "A full business website with online booking.",
+      price: 125000,
+      from: true,
+      features: [
+        "Everything in Business",
+        "Online booking system for your customers",
+        "Booking management in the admin panel",
+        "Dashboard with a clear overview of bookings",
+        "Priority support after launch",
+      ],
+      cta: "Choose Complete",
+    },
+  ] as Plan[],
+  custom: {
+    title: "Need an online store or a management system?",
+    text: "Stock, sales, purchases, customer accounts, payments and more. Every business is different, so these are quoted after a short call.",
+    cta: "Get a custom quote",
+  },
+};

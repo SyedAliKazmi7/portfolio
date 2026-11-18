@@ -3,6 +3,7 @@ import TechMarquee from "../components/TechMarquee";
 import About from "../components/About";
 import Projects from "../components/Projects";
 import Services, { Process } from "../components/Services";
+import Pricing from "../components/Pricing";
 import Contact from "../components/Contact";
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       <About />
       <Projects />
       <Services />
+      <Pricing />
       <Process />
       <Contact />
     </main>
